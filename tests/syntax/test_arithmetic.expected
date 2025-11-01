@@ -1,0 +1,46 @@
+✓ Loading cell data from: tests/cells/base_cells.txt
+✓ Reading formula from: tests/syntax/test_arithmetic.txt
+
+=== PHASE 1 & 2: Parsing ===
+✓ Parse successful! AST built.
+
+=== PHASE 4: Semantic Analysis ===
+Running semantic analysis for cell C1...
+Checking circular dependencies for C1...
+✓ Compilation successful. No errors found.
+
+=== PHASE 6: Execution ===
+✓ Executing via VM (Prompt 6.2)
+
+--- PHASE 5: Code Generation ---
+--- Bytecode ---
+0000: PUSH_CELL A1
+0001: PUSH 5.000000
+0002: PUSH 2.000000
+0003: MUL
+0004: ADD
+0005: HALT
+----------------
+--- VM TRACE ---
+0000: 0000: PUSH_CELL A1
+    STACK: [ ]
+0001: 0001: PUSH 5.000000
+    STACK: [ 10 ]
+0002: 0002: PUSH 2.000000
+    STACK: [ 10 5 ]
+0003: 0003: MUL
+    STACK: [ 10 5 2 ]
+0004: 0004: ADD
+    STACK: [ 10 10 ]
+0005: 0005: HALT
+    STACK: [ 20 ]
+--- END TRACE ---
+VM Result: 20.000000
+
+--- Abstract Syntax Tree ---
+└── BINARY_OP (+)
+    ├── CELL_REF (A1)
+    └── BINARY_OP (*)
+        ├── NUMBER (5.000000)
+        └── NUMBER (2.000000)
+----------------------------

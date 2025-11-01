@@ -1,0 +1,19 @@
+[31m[Line 1] Semantic Error: Undefined cell reference: 'B99'.[0m
+[36mSuggestion: Ensure this cell has a value.[0m
+======================================
+SPREADSHEET FORMULA COMPILER v1.0
+======================================
+Input Formula: =A1 + B99
+
+=== PHASE 1 & 2: PARSING ===
+
+=== PHASE 4: SEMANTIC ANALYSIS ===
+SYMBOL TABLE
+Cell | Value   | Status
+A2   | 20.00   | DEFINED
+A3   | 30.00   | DEFINED
+Z1   | 0.00    | DEFINED
+Z2   | 0.00    | DEFINED
+A1   | 10.00   | DEFINED
+
+Compilation failed with 2 semantic error(s).

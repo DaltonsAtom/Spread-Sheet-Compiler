@@ -1,0 +1,28 @@
+Ignore directories for compiled objects and executables
+
+/obj/
+/bin/
+
+Ignore C object files
+
+*.o
+
+Ignore generated files from Flex and Bison
+
+src/lex.yy.c
+src/parser.tab.c
+src/parser.tab.h
+src/parser.output
+
+Ignore executables (if they end up in the root)
+
+*.out
+compiler
+run_tests
+
+Ignore common system/editor files
+
+.DS_Store
+*.swp
+*~
+*.swo

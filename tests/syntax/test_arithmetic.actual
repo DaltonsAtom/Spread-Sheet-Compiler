@@ -1,0 +1,79 @@
+✓ Loading cell data from: tests/cells/base_cells.txt
+======================================
+ SPREADSHEET FORMULA COMPILER v1.0
+======================================
+Input Formula: =A1 + 5 * 2
+
+=== PHASE 1 & 2: PARSING ===
+✓ Parse tree constructed
+✓ No syntax errors detected
+
+=== ABSTRACT SYNTAX TREE ===
+AST VISUALIZATION
+└── BINARY_OP (+)
+    ├── CELL_REF (A1)
+    └── BINARY_OP (*)
+        ├── NUMBER (5.000000)
+        └── NUMBER (2.000000)
+
+=== PHASE 4: SEMANTIC ANALYSIS ===
+SYMBOL TABLE
+Cell | Value   | Status
+-----|---------|----------
+A2   | 20.00   | DEFINED
+A3   | 30.00   | DEFINED
+Z1   | 0.00    | DEFINED
+Z2   | 0.00    | DEFINED
+A1   | 10.00   | DEFINED
+Running semantic analysis for cell C1...
+Checking circular dependencies for C1...
+✓ Semantic analysis passed!
+
+=== PHASE 5: CODE GENERATION ===
+STACK-BASED BYTECODE
+--- Bytecode ---
+0000: PUSH_CELL A1
+0001: PUSH 5.000000
+0002: PUSH 2.000000
+0003: MUL
+0004: ADD
+0005: HALT
+----------------
+
+=== PHASE 6: EXECUTION ===
+EVALUATION RESULTS
+
+Method 1: Direct AST Interpretation
+Stack Trace:
+Evaluating NODE_BINARY_OP
+  Evaluating NODE_CELL(A1) = 10.00
+  Evaluating NODE_BINARY_OP
+    Evaluating NODE_NUMBER = 5.00
+    Evaluating NODE_NUMBER = 2.00
+Result: 20.000000
+RESULT: 20.000000
+
+Method 2: Virtual Machine Execution
+--- VM TRACE ---
+0000: 0000: PUSH_CELL A1
+    STACK: [ ]
+0001: 0001: PUSH 5.000000
+    STACK: [ 10 ]
+0002: 0002: PUSH 2.000000
+    STACK: [ 10 5 ]
+0003: 0003: MUL
+    STACK: [ 10 5 2 ]
+0004: 0004: ADD
+    STACK: [ 10 10 ]
+0005: 0005: HALT
+    STACK: [ 20 ]
+--- END TRACE ---
+RESULT: 20.000000
+
+======================================
+ COMPILATION SUMMARY
+======================================
+Status:       SUCCESS
+Tokens:       6
+AST Nodes:    5
+Instructions: 6
